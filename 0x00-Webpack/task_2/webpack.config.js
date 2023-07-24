@@ -1,8 +1,5 @@
 // webpack.config.js
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
   entry: './js/dashboard_main.js',
@@ -27,25 +24,8 @@ module.exports = {
               outputPath: 'images',
             },
           },
-          {
-            loader: 'image-webpack-loader',
-            options: {
-              disable: process.env.NODE_ENV === 'development',
-            },
-          },
         ],
       },
     ],
   },
-  optimization: {
-    minimizer: [
-      new OptimizeCssAssetsPlugin(),
-      new TerserPlugin(),
-    ],
-  },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: './public/index.html',
-    }),
-  ],
 };
